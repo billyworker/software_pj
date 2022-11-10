@@ -213,7 +213,7 @@ def chessMove(command):       # command --> actual movement
             if chessName[0] == turn:
                 if not move(getChess(chessName), pos):
                     pass
-                    #view.errMessage(4)
+                    view.errMessage(4)
                 else:
                     pass
                     #view.printBoard(chessArrA, chessArrB, den, trap, river)
@@ -223,36 +223,36 @@ def chessMove(command):       # command --> actual movement
                         turn = 'A'
                     if not winCheck():
                         pass
-                        #view.remind()
+                        view.remind()
             else:
                 pass
-                #view.errMessage(6)
+                view.errMessage(6)
         else:
             pass
-            #view.errMessage(3)
+            view.errMessage(3)
     else:
         pass
-        #view.errMessage(2)
+        view.errMessage(2)
 
 def winCheck():             #check if there is a winner
     global gameEnd
     for i in range(8):
         if den.isDenB(chessArrA[i].getX(), chessArrA[i].getY()):
             gameEnd = True
-            #view.winMessage('A')
+            view.winMessage('A')
             return True
         elif den.isDenA(chessArrB[i].getX(), chessArrB[i].getY()):
             gameEnd = True
-            #view.winMessage('B')
+            view.winMessage('B')
             return True
 
     if chessB == 0:
         gameEnd = True
-       #view.winMessage('A')
+        view.winMessage('A')
         return True
     elif chessA == 0:
         gameEnd = True
-        #view.winMessage('B')
+        view.winMessage('B')
         return True
 
     return False
@@ -267,7 +267,7 @@ def commandTranslator(command):   #get command from controller --> do something
             chessMove(command)
         else:
             pass
-           #view.errMessage(5)
+            view.errMessage(5)
     else:
         pass
-      #view.errMessage(1)
+        view.errMessage(1)
