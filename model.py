@@ -212,26 +212,20 @@ def chessMove(command):       # command --> actual movement
         if pos in {'U', 'D', 'R', 'L'}:
             if chessName[0] == turn:
                 if not move(getChess(chessName), pos):
-                    pass
                     view.errMessage(4)
                 else:
-                    pass
-                    #view.printBoard(chessArrA, chessArrB, den, trap, river)
+                    view.printBoard(chessArrA, chessArrB, den, trap, river)
                     if turn == 'A':
                         turn = 'B'
                     else:
                         turn = 'A'
                     if not winCheck():
-                        pass
                         view.remind()
             else:
-                pass
                 view.errMessage(6)
         else:
-            pass
             view.errMessage(3)
     else:
-        pass
         view.errMessage(2)
 
 def winCheck():             #check if there is a winner
@@ -266,8 +260,6 @@ def commandTranslator(command):   #get command from controller --> do something
         if not gameEnd:
             chessMove(command)
         else:
-            pass
             view.errMessage(5)
     else:
-        pass
         view.errMessage(1)

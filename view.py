@@ -31,28 +31,25 @@ def printBoard(chessArrA, chessArrB, den, trap, river):
             else:
                 print("   | ", end="")
             if x == 6:
-                charMean(y)
+                if y == 0:
+                    print("{}\t\t{}".format("\"R\" = Rat", "\"()\" = Den"))
+                elif y == 1:
+                    print("{}\t\t{}".format("\"C\" = Cat", "\"{}\" = Trap"))
+                elif y == 2:
+                    print("{}\t\t{}".format("\"D\" = Dog", "\"~~\" = River"))
+                elif y == 3:
+                    print("{}".format("\"W\" = Wolf"))
+                elif y == 4:
+                    print("{}".format("\"L\" = Leopard"))
+                elif y == 5:
+                    print("{}".format("\"T\" = Tiger"))
+                elif y == 6:
+                    print("{}".format("\"I\" = Lion"))
+                elif y == 7:
+                    print("{}".format("\"E\" = Elephant"))
+                else:
+                    print()
         print("|----|----|----|----|----|----|----|")
-
-def charMean(i):
-    if i == 0:
-        print("{}\t\t{}".format("\"R\" = Rat","\"()\" = Den"))
-    elif i == 1:
-        print("{}\t\t{}".format("\"C\" = Cat", "\"{}\" = Trap"))
-    elif i == 2:
-        print("{}\t\t{}".format("\"D\" = Dog", "\"~~\" = River"))
-    elif i == 3:
-        print("{}".format("\"W\" = Wolf"))
-    elif i == 4:
-        print("{}".format("\"L\" = Leopard"))
-    elif i == 5:
-        print("{}".format("\"T\" = Tiger"))
-    elif i == 6:
-        print("{}".format("\"I\" = Lion"))
-    elif i == 7:
-        print("{}".format("\"E\" = Elephant"))
-    else:
-        print()
 
 def remind():
     print()
