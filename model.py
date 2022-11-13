@@ -1,8 +1,8 @@
 import jungleClass as jc
 import view
 
-#storage
-chessArrA = []                #chess obj array
+# storage
+chessArrA = []  # chess obj array
 chessArrB = []
 den = jc.Den()
 trap = jc.Trap()
@@ -12,32 +12,34 @@ chessA = 8
 chessB = 8
 gameEnd = False
 turn = 'A'
-#initialization
+
+
+# initialization
 def init():
     chessArrA.clear()
     chessArrB.clear()
-    #rat
+    # rat
     chessArrA.append(jc.Chess(0, 2, 0, 'A', 'R'))
     chessArrB.append(jc.Chess(6, 6, 0, 'B', 'R'))
-    #cat
+    # cat
     chessArrA.append(jc.Chess(5, 1, 1, 'A', 'C'))
     chessArrB.append(jc.Chess(1, 7, 1, 'B', 'C'))
-    #dog
+    # dog
     chessArrA.append(jc.Chess(1, 1, 2, 'A', 'D'))
     chessArrB.append(jc.Chess(5, 7, 2, 'B', 'D'))
-    #wolf
+    # wolf
     chessArrA.append(jc.Chess(4, 2, 3, 'A', 'W'))
     chessArrB.append(jc.Chess(2, 6, 3, 'B', 'W'))
-    #leopard
+    # leopard
     chessArrA.append(jc.Chess(2, 2, 4, 'A', 'L'))
     chessArrB.append(jc.Chess(4, 6, 4, 'B', 'L'))
-    #tiger
+    # tiger
     chessArrA.append(jc.Chess(6, 0, 5, 'A', 'T'))
     chessArrB.append(jc.Chess(0, 8, 5, 'B', 'T'))
-    #lion
+    # lion
     chessArrA.append(jc.Chess(0, 0, 6, 'A', 'I'))
     chessArrB.append(jc.Chess(6, 8, 6, 'B', 'I'))
-    #elephant
+    # elephant
     chessArrA.append(jc.Chess(6, 2, 7, 'A', 'E'))
     chessArrB.append(jc.Chess(0, 6, 7, 'B', 'E'))
 
@@ -50,21 +52,24 @@ def init():
     view.printBoard(chessArrA, chessArrB, den, trap, river)
     view.remind()
 
-def getChess(chessName):      #get chess obj by chess name
+
+def getChess(chessName):  # get chess obj by chess name
     for i in range(8):
         if chessArrA[i].isName(chessName):
             return chessArrA[i]
         elif chessArrB[i].isName(chessName):
             return chessArrB[i]
 
-def getChessByPos(x, y):      #get chess obj by position
+
+def getChessByPos(x, y):  # get chess obj by position
     for i in range(8):
         if chessArrA[i].inPos(x, y):
             return chessArrA[i]
         elif chessArrB[i].inPos(x, y):
             return chessArrB[i]
 
-def haveChess(x, y):        #check a specific position have chess or not
+
+def haveChess(x, y):  # check a specific position have chess or not
     for i in range(8):
         if chessArrA[i].inPos(x, y):
             return True
@@ -72,9 +77,10 @@ def haveChess(x, y):        #check a specific position have chess or not
             return True
     return False
 
-def capture(movingChess, capChess):    #chess capturing
-    #movingChess is the chess that are moving in current turn
-    #capChess is the chess that to be capture
+
+def capture(movingChess, capChess):  # chess capturing
+    # movingChess is the chess that are moving in current turn
+    # capChess is the chess that to be capture
     global chessA, chessB
     canCapture = False
 
@@ -85,7 +91,7 @@ def capture(movingChess, capChess):    #chess capturing
         if trap.isTrapA(capChess.getX(), capChess.getY()):
             canCapture = True
 
-    if river.isRiver(movingChess.getX(), movingChess.getY()):   # rat eat rat in river
+    if river.isRiver(movingChess.getX(), movingChess.getY()):  # rat eat rat in river
         if river.isRiver(capChess.getX(), capChess.getY()):
             canCapture = True
 
@@ -107,7 +113,8 @@ def capture(movingChess, capChess):    #chess capturing
 
     return False
 
-def canMove(chess, x, y):       #check chess can move to specific position or not
+
+def canMove(chess, x, y):  # check chess can move to specific position or not
     xArr = {0, 1, 2, 3, 4, 5, 6}
     yArr = {0, 1, 2, 3, 4, 5, 6, 7, 8}
 
@@ -130,12 +137,13 @@ def canMove(chess, x, y):       #check chess can move to specific position or no
             return False
 
     if haveChess(x, y):
-        if getChessByPos(x,y).getPlayer() == chess.getPlayer():
+        if getChessByPos(x, y).getPlayer() == chess.getPlayer():
             return False
 
     return True
 
-def jump(chess, pos):   # jump over the river for lion and tiger
+
+def jump(chess, pos):  # jump over the river for lion and tiger
     canJump = True
     x = chess.getX()
     y = chess.getY()
@@ -174,12 +182,13 @@ def jump(chess, pos):   # jump over the river for lion and tiger
                 if capture(chess, getChessByPos(x, y)):
                     return True
         else:
-            chess.setPos(x,y)
+            chess.setPos(x, y)
             return True
 
     return False
 
-def move(chess, pos):  #actual movement
+
+def move(chess, pos):  # actual movement
     x = chess.getX()
     y = chess.getY()
     if pos == 'U':
@@ -205,7 +214,8 @@ def move(chess, pos):  #actual movement
 
     return False
 
-def chessMove(command):       # command --> actual movement
+
+def chessMove(command):  # command --> actual movement
     chessName, pos = command.split(' ')
     global turn
     if chessName in {"AR", "BR", "AC", "BC", "AD", "BD", "AW", "BW", "AL", "BL", "AT", "BT", "AI", "BI", "AE", "BE"}:
@@ -228,7 +238,8 @@ def chessMove(command):       # command --> actual movement
     else:
         view.errMessage(2)
 
-def winCheck():             #check if there is a winner
+
+def winCheck():  # check if there is a winner
     global gameEnd
     for i in range(8):
         if den.isDenB(chessArrA[i].getX(), chessArrA[i].getY()):
@@ -251,7 +262,8 @@ def winCheck():             #check if there is a winner
 
     return False
 
-def commandTranslator(command):   #get command from controller --> do something
+
+def commandTranslator(command):  # get command from controller --> do something
     if command == 'EXIT':
         exit()
     elif command == 'RESTART':

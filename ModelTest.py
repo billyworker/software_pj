@@ -1,11 +1,12 @@
 import unittest
 import model as ml
 
+
 class ChessTestCase(unittest.TestCase):
     # initialization before the test
     @classmethod
     def setUpClass(cls):
-        #jc as jungleClass in model
+        # jc as jungleClass in model
         cls.chess = ml.jc.Chess(0, 2, 0, 'A', 'R')
 
     # kill obj after all test finish in this class
@@ -47,6 +48,7 @@ class ChessTestCase(unittest.TestCase):
     # test the can we check the name of chess
     def test_chess_isName(self):
         self.assertEqual(self.__class__.chess.isName('AR'), True)
+        self.assertEqual(self.__class__.chess.isName('XX'), False)
 
 
 class DenTestCase(unittest.TestCase):
@@ -103,7 +105,7 @@ class RiverTestCase(unittest.TestCase):
 
 
 class ModelTestCase(unittest.TestCase):
-    #before each test in this test, do initialization
+    # before each test in this test, do initialization
     def setUp(self):
         ml.init()
 
@@ -125,7 +127,7 @@ class ModelTestCase(unittest.TestCase):
         self.assertEqual(ml.capture(ml.chessArrB[0], ml.chessArrA[7]), True)  # rat can capture elephant
         self.assertEqual(ml.capture(ml.chessArrB[0], ml.chessArrA[6]), False)  # rat can not capture lion
         ml.chessArrA[6].setPos(3, 7)
-        self.assertEqual(ml.capture(ml.chessArrB[0], ml.chessArrA[6]), True) # rat capture lion in den
+        self.assertEqual(ml.capture(ml.chessArrB[0], ml.chessArrA[6]), True)  # rat capture lion in den
         ml.init()
         # one rat in river and other rat is not in river ==> cannot capture
         ml.chessArrA[0].setPos(1, 3)
@@ -139,14 +141,14 @@ class ModelTestCase(unittest.TestCase):
     # test chess can move to specific pos or not
     def test_model_canMove(self):
         self.assertEqual(ml.canMove(ml.chessArrA[0], 1, 2), True)  # rat can move to right one block
-        self.assertEqual(ml.canMove(ml.chessArrA[4], 2, 3), False) # Leopard cannot move to river
+        self.assertEqual(ml.canMove(ml.chessArrA[4], 2, 3), False)  # Leopard cannot move to river
         self.assertEqual(ml.canMove(ml.chessArrB[0], 1, 4), True)  # rat can move to river
-        self.assertEqual(ml.canMove(ml.chessArrA[0], 3, 0), False) # team A cannot move to team A den
+        self.assertEqual(ml.canMove(ml.chessArrA[0], 3, 0), False)  # team A cannot move to team A den
         self.assertEqual(ml.canMove(ml.chessArrA[0], 3, 8), True)  # team A can move to team B den
 
     # test chess can jump over river or not
     def test_model_jump(self):
-        #test jumping from bottom to top
+        # test jumping from bottom to top
         ml.chessArrA[5].setPos(1, 6)
         self.assertEqual(ml.jump(ml.chessArrA[5], "U"), True)
 
@@ -154,7 +156,7 @@ class ModelTestCase(unittest.TestCase):
         ml.chessArrA[0].setPos(1, 4)
         self.assertEqual(ml.jump(ml.chessArrA[5], "D"), False)
 
-        #remove rat blocking
+        # remove rat blocking
         ml.chessArrA[0].setPos(0, 2)
         self.assertEqual(ml.jump(ml.chessArrA[5], "D"), True)
 
@@ -169,7 +171,6 @@ class ModelTestCase(unittest.TestCase):
         # remove rat blocking
         ml.chessArrA[0].setPos(0, 2)
         self.assertEqual(ml.jump(ml.chessArrA[5], "L"), True)
-
 
     # test chess perform actual move
     def test_model_move(self):
@@ -193,9 +194,10 @@ class ModelTestCase(unittest.TestCase):
         ml.chessArrB[5].setPos(3, 0)
         self.assertEqual(ml.winCheck(), True)
         ml.init()
-        #set all chess in team B are eaten
+        # set all chess in team B are eaten
         ml.chessB = 0
         self.assertEqual(ml.winCheck(), True)
+
 
 if __name__ == '__main__':
     unittest.main()
