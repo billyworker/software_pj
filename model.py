@@ -13,7 +13,6 @@ chessB = 8
 gameEnd = False
 turn = 'A'
 
-
 # initialization
 def init():
     chessArrA.clear()
@@ -52,14 +51,12 @@ def init():
     view.printBoard(chessArrA, chessArrB, den, trap, river)
     view.remind()
 
-
 def getChess(chessName):  # get chess obj by chess name
     for i in range(8):
         if chessArrA[i].isName(chessName):
             return chessArrA[i]
         elif chessArrB[i].isName(chessName):
             return chessArrB[i]
-
 
 def getChessByPos(x, y):  # get chess obj by position
     for i in range(8):
@@ -68,7 +65,6 @@ def getChessByPos(x, y):  # get chess obj by position
         elif chessArrB[i].inPos(x, y):
             return chessArrB[i]
 
-
 def haveChess(x, y):  # check a specific position have chess or not
     for i in range(8):
         if chessArrA[i].inPos(x, y):
@@ -76,7 +72,6 @@ def haveChess(x, y):  # check a specific position have chess or not
         elif chessArrB[i].inPos(x, y):
             return True
     return False
-
 
 def capture(movingChess, capChess):  # chess capturing
     # movingChess is the chess that are moving in current turn
@@ -113,7 +108,6 @@ def capture(movingChess, capChess):  # chess capturing
 
     return False
 
-
 def canMove(chess, x, y):  # check chess can move to specific position or not
     xArr = {0, 1, 2, 3, 4, 5, 6}
     yArr = {0, 1, 2, 3, 4, 5, 6, 7, 8}
@@ -141,7 +135,6 @@ def canMove(chess, x, y):  # check chess can move to specific position or not
             return False
 
     return True
-
 
 def jump(chess, pos):  # jump over the river for lion and tiger
     canJump = True
@@ -187,7 +180,6 @@ def jump(chess, pos):  # jump over the river for lion and tiger
 
     return False
 
-
 def move(chess, pos):  # actual movement
     x = chess.getX()
     y = chess.getY()
@@ -214,7 +206,6 @@ def move(chess, pos):  # actual movement
 
     return False
 
-
 def chessMove(command):  # command --> actual movement
     chessName, pos = command.split(' ')
     global turn
@@ -238,7 +229,6 @@ def chessMove(command):  # command --> actual movement
     else:
         view.errMessage(2)
 
-
 def winCheck():  # check if there is a winner
     global gameEnd
     for i in range(8):
@@ -261,7 +251,6 @@ def winCheck():  # check if there is a winner
         return True
 
     return False
-
 
 def commandTranslator(command):  # get command from controller --> do something
     if command == 'EXIT':

@@ -1,6 +1,5 @@
 import os
 
-
 def printBoard(chessArrA, chessArrB, den, trap, river):
     os.system('cls')
     print("|----|----|----|----|----|----|----|")
@@ -52,13 +51,11 @@ def printBoard(chessArrA, chessArrB, den, trap, river):
                     print()
         print("|----|----|----|----|----|----|----|")
 
-
 def remind():
     print()
     print("\"[A/B][chess] [U/D/L/R]\" to control e.g. \"AE U\"")
     print("exit/EXIT to quit, restart/RESTART to reset the game")
     print("Please enter a command:")
-
 
 def errMessage(errID):
     print()
@@ -76,7 +73,6 @@ def errMessage(errID):
         print("This is not your turn.")
 
     print("Please enter again:")
-
 
 def winMessage(player):
     print()

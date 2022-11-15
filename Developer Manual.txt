@@ -1,0 +1,25 @@
+Developer Manual
+
+    Development environment: Windows
+    Development method / code: Python(Python version 3.10)
+    Development IDE: Pycharm / VScode
+
+    To run program with Terminal:
+        1. Place all python file in a working directory
+        2. cd to this working directory in Terminal
+        3. Run in this command: python main.py
+
+    To run program in Pycharm / VScode python IDE:
+        Press run button on main.py
+
+    Module used in this program:
+        "os": Used function in "os": os.system('cls') # aims to clear screen
+
+    Tools: used in Terminal
+        Unittest: aims to test the program
+            to start the unittest: python -m unittest ModelTest.py
+
+        Coverage: percentage of line ran in unittest
+            To get the coverage report:
+                1. coverage run ModelTest.py
+                2. coverage report -m model.py
