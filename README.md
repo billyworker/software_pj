@@ -17,4 +17,5 @@
     4. Run test in this command: coverage run ModelTest.py
     5. Generate report by this command: coverage report -m model.py
     i.e. If coverage pack didn't install run "pip install coverage" to install
+    6. Generate html report by this command: coverage html model.py
 

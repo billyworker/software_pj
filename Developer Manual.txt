@@ -22,4 +22,9 @@ Developer Manual
         Coverage: percentage of line ran in unittest
             To get the coverage report:
                 1. coverage run ModelTest.py
-                2. coverage report -m model.py
+                2. coverage report -m model.py # show in Terminal
+                3. coverage html model.py
+                    to generate a html file in working directory to have better presentation
+                    i.e. file htmlcov will be generated
+                         index.html in htmlcov will be the percentage of coverage
+                         model_py.html in htmlcov will be thee line that unittest ran
